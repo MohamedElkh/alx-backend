@@ -59,7 +59,7 @@ class Server:
 
         for x in range(page_size):
             while True:
-                current = dataset.get(index)
+                current = datas.get(index)
                 index += 1
 
                 if current is not None:
