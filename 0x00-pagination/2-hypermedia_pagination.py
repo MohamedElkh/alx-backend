@@ -5,20 +5,7 @@ import math
 from typing import List, Tuple
 
 
-def index_range(page: int, page_size: int) -> Tuple[int, int]:
-    """func to contain definition of index_range helper
-    args:
-        page: the page number to return
-        page_size: the number of items per page
-    return:
-        the res tuple
-    """
-    st, ed = 0, 0
-
-    for x in range(page):
-        st = ed
-        ed += page_size
-    return (st, ed)
+index_range = __import__('0-simple_helper_function').index_range
 
 
 class Server:
@@ -42,7 +29,10 @@ class Server:
 
     @staticm
     def func_assert(value: int) -> None:
-        """func to assert to value is positive int"""
+        """func to assert to value is positive int
+        args:
+            value: the value to be asserted
+        """
         assert type(value) is int and value > 0
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
@@ -60,7 +50,7 @@ class Server:
         st, ed = index_range(page, page_size)
 
         try:
-            data = dataset[st:ed]
+            data = datas[st:ed]
         except IndexError:
             data = []
         return data
