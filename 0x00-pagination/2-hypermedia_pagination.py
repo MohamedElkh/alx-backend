@@ -1,11 +1,24 @@
 #!/usr/bin/env python3
-"""func to contain class with methods for creating simple"""
+"""func to define lass Server that paginates a database"""
 import csv
 import math
 from typing import List, Tuple
 
 
-index_range = __import__('0-simple_helper_function').index_range
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
+    """func to contain definition of index_range helper
+    args:
+        page: the page number to return
+        page_size: the number of items per page
+    return:
+        the res tuple
+    """
+    st, ed = 0, 0
+
+    for x in range(page):
+        st = ed
+        ed += page_size
+    return (st, ed)
 
 
 class Server:
@@ -27,14 +40,6 @@ class Server:
 
         return self.__dataset
 
-    @staticm
-    def func_assert(value: int) -> None:
-        """func to assert to value is positive int
-        args:
-            value: the value to be asserted
-        """
-        assert type(value) is int and value > 0
-
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """func to Takes 2 integer arguments and returns requested
         args:
@@ -47,31 +52,40 @@ class Server:
         assert type(page_size) is int and page_size > 0
 
         datas = self.dataset()
-        st, ed = index_range(page, page_size)
+        datal = len(datas)
 
         try:
-            data = datas[st:ed]
+            ind = index_range(page, page_size)
+            return datas[ind[0]:ind[1]]
         except IndexError:
-            data = []
-        return data
+            return []
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
-        """func to return the page of dataset
-        args:
-            page: the page number
-            page_size: the page size
-        return:
-            the res of list
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
         """
-        total_pages = len(self.dataset())
+        this function takes 2 int args and return a dict containing these
+        Args:
+            page: requested page
+            page_size: number of items per page
+        Return:
+            res dict with key-value pairs
+        """
+        total = self.dataset()
         data = self.get_page(page, page_size)
 
-        information = {
+        total_pages = math.ceil(len(total) / page_size)
+
+        if data == []:
+            page_size = 0
+
+        next_page = page + 1 if page + 1 <= total_pages else None
+        prev_page = page - 1 if page > 1 else None
+
+        new_info = {
+            "page_size": len(data),
             "page": page,
-            "page_size": page_size if page_size <= len(data) else len(data),
-            "total_pages": total_pages,
             "data": data,
-            "prev_page": page - 1 if page > 1 else None,
-            "next_page": page + 1 if page + 1 <= total_pages else None
+            "next_page": next_page,
+            "prev_page": prev_page,
+            "total_pages": total_pages
         }
-        return information
+        return new_info
