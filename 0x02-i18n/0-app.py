@@ -2,7 +2,6 @@
 """this docs contains func related to flask app"""
 from flask import Flask, render_template
 
-
 app = Flask(__name__)
 
 
