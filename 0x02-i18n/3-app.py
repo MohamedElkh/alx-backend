@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""this docs contains Flask app"""
+"""
+this docs contains Flask app
+Contains a basic flask app displaying 
+'Welcome to Holberton' on a single route '/'
+"""
 
 from flask import Flask, render_template, request
 from flask_babel import Babel
