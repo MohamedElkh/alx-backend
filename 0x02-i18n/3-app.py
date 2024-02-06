@@ -6,6 +6,7 @@ from flask import (
     render_template,
     request
 )
+
 from flask_babel import Babel
 
 
