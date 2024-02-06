@@ -7,7 +7,10 @@ from os import getenv
 
 
 class Config(object):
-    """class to Configuration for Babel"""
+    """
+    class to Configuration for Babel
+    is
+    """
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
 
@@ -22,13 +25,19 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale():
-    """func to Select and return best language match based"""
+    """
+    func to Select and
+    return best language match based
+    """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/', strict_slashes=False)
 def func_index() -> str:
-    """func to Handles / route"""
+    """
+    func to
+    Handles / route
+    """
     return render_template('3-index.html')
 
 
