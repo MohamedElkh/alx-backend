@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 this docs contains Flask app
-Contains a basic flask app displaying 
+Contains a basic flask app displaying
 'Welcome to Holberton' on a single route '/'
 """
 
