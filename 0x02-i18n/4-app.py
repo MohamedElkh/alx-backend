@@ -1,12 +1,7 @@
 #!/usr/bin/env python3
-"""Flask app"""
+"""this is Flask app"""
 
-from flask import (
-    Flask,
-    render_template,
-    request
-)
-
+from flask import Flask, render_template, request
 from flask_babel import Babel
 
 
@@ -27,10 +22,10 @@ babel = Babel(app)
 @babel.localeselector
 def get_locale():
     """func to Select and return best language match based"""
-    locx = request.args.get('locale')
+    locale = request.args.get('locale')
 
-    if locx in app.config['LANGUAGES']:
-        return locx
+    if locale in app.config['LANGUAGES']:
+        return locale
 
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
