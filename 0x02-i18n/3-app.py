@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
 """this docs contains Flask app"""
 
-from flask import (
-    Flask,
-    render_template,
-    request
-)
+from flask import Flask, render_template, request
 from flask_babel import Babel
+from os import getenv
 
 
 class Config(object):
